@@ -17,5 +17,7 @@
     .popup__content {
         width: 282px;
         min-height: 322px;
+        top: calc(50vh - 161px);
+        right: calc(50vw - 141px);
     }
 }

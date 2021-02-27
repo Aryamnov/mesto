@@ -1,3 +1,12 @@
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(45deg);
+    }
+  }
+
 .popup__close {
     position: absolute;
     width: 60px;
@@ -12,8 +21,10 @@
     transition: 0.4s linear;
 }
 
+
 .popup__close:hover {
     opacity: 0.6;
+    animation: rotate 0.4s forwards;
 }
 
 @media screen and (max-width: 600px) {
