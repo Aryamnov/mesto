@@ -8,4 +8,9 @@
     background-color: #000000;
     border: none;
     cursor: pointer;
+    transition: 0.4s linear;
+}
+
+.profile__button-edit:hover {
+    opacity: 0.6;
 }

@@ -1,5 +1,6 @@
 .popup__content {
     display: flex;
+    position: fixed;
     flex-direction: column;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
@@ -8,6 +9,8 @@
     justify-content: flex-start;
     width: 430px;
     min-height: 330px;
+    top: calc(50vh - 165px);
+    right: calc(50vw - 215px);  
 }
 
 @media screen and (max-width: 600px) {
