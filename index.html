@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto Russia</title>
+    <link rel="stylesheet" href="./pages/index.css">
+    <meta name="description" content="Практическая работа №4">
+    <meta name="keywords" content="html, css, javascript, js">
+    <meta name="author" content="Андрей Арямнов">
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <img src="images/logo.svg" alt="Логотип сайта с текстом Mesto Russia." class="header__logo">
+        </header>
+        <main class="content">
+            <section class="profile">
+                <img src="images/image.jpg" alt="Аватарка Жак-Ив Кусто." class="profile__avatar">
+            <div class="profile__info">
+                <div class="profile__title-button">
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__button-edit"></button>
+                </div>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+            <button type="button" class="profile__button-add"></button>
+        </section>
+        <section>
+            <ul class="elements">
+                <li class="element">
+                    <img src="images/kirill-pershin-1088404-unsplash.jpg" alt="" class="element__image">
+                    <div class="element__info">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <button type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/kirill-pershin-1404681-unsplash.jpg" alt="" class="element__image">
+                    <div class="element__info">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <button type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/kirill-pershin-1556355-unsplash.jpg" alt="" class="element__image">
+                    <div class="element__info">
+                        <h2 class="element__title">Домбай</h2>
+                        <button type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/kirill-pershin-1404681-unsplash.jpg" alt="" class="element__image">
+                    <div class="element__info">
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <button type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/kirill-pershin-1556355-unsplash.jpg" alt="" class="element__image">
+                    <div class="element__info">
+                        <h2 class="element__title">Домбай</h2>
+                        <button type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/kirill-pershin-1088404-unsplash.jpg" alt="" class="element__image">
+                    <div class="element__info">
+                        <h2 class="element__title">Карачаевск</h2>
+                        <button type="button" class="element__like"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <footer class="footer">
+            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+        </footer>
+        </main>
+        <div class="popup popup_opened">
+            <div class="popup__content">
+                <button class="popup__close"></button>
+                <h3 class="popup__title">Редактировать профиль</h3>
+                <form class="popup__form">
+                    <input name="popupname" placeholder="Введите имя" class="popup__input-name popup__input" type="text" required>
+                    <input name="popupsignature" placeholder="Введите подпись" class="popup__input-signature popup__input" type="text" required>
+                    <button type="submit" class="popup__submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
