@@ -13,12 +13,13 @@
     height: 60px;
     top: -50px;
     right: -50px;
-    background-image: url(../../../images/Close\ Icon.svg);
+    background-image: url(../../../images/Close_Icon.svg);
     background-size: cover;
     background-color: transparent;
     border: 0;
     padding: 0;
     transition: 0.4s linear;
+    outline: none;
 }
 
 

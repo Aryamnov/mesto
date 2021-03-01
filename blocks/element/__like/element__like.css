@@ -12,6 +12,7 @@
     cursor: pointer;
     padding: 0;
     transition: 0.4s linear;
+    outline: none;
 }
 
 .element__like:hover {

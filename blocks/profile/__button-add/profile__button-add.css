@@ -3,12 +3,14 @@
     height: 50px;
     margin: auto 0;
     margin-left: auto;
-    background-image: url(../../../images/Add\ Button.svg);
+    background-image: url(../../../images/Add_Button.svg);
     background-size: cover;
     background-color: #000000;
     border: none;
     cursor: pointer;
     transition: 0.4s linear;
+    border-radius: 2px;
+    outline: none;
 }
 
 .profile__button-add:hover {
@@ -18,7 +20,7 @@
 @media screen and (max-width: 700px) {
     .profile__button-add {
         margin: 36px 0 0 0;
-        background-image: url(../../../images/Add\ Button\ large.svg);
+        background-image: url(../../../images/Add_Button_large.svg);
         width: 282px;
     }
 }

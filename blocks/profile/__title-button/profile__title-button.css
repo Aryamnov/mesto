@@ -6,6 +6,8 @@
 
 @media screen and (max-width: 700px) {
     .profile__title-button {
+        display: flex;
+        justify-content: center;
         margin-top: 23px;
     }
 }
