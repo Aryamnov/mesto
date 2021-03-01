@@ -1,4 +1,4 @@
-.popup__input_type_name {
+.popup__input {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .popup__input_type_name {
+    .popup__input {
         width: 238px;
     }
 }
