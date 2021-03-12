@@ -50,7 +50,7 @@ function hitLike (cardElements) { //функция позволяет стави
   cardElements.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_status_active');    
   });
-}
+};
 
 function delButton (cardElements) {
   const deleteButton = cardElements.querySelector('.element__trash-can');
@@ -58,7 +58,7 @@ function delButton (cardElements) {
     const listItem = deleteButton.closest('.element');
     listItem.remove(); 
   });
-}
+};
 
 function setImagePopup (cardElements) {
   cardElements.querySelector('.element__image').addEventListener('click', function (evt) {
@@ -68,7 +68,7 @@ function setImagePopup (cardElements) {
     const text = parrent.querySelector('.element__title');
     imageInfo.textContent = text.textContent;
   });
-}
+};
 
 initialCards.forEach(function (element) { //Добавляем карточки на странице
   const cardElements = elementTemplate.cloneNode(true);
