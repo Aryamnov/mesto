@@ -127,7 +127,7 @@ function formSubmitAdd (evt) { // Добавляем карточки
   cardElements.querySelector('.element__image').src = srcCard.value;
   hitLike (cardElements);
   delButton (cardElements);
-  imagePopup (cardElements);
+  setImagePopup (cardElements);
   elementList.prepend(cardElements);
   nameCard.value = '';
   srcCard.value = '';
