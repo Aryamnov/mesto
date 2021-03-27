@@ -38,8 +38,10 @@
                 <button class="popup__close popup__close_form_edit" aria-label="Закрыть форму."></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <form class="popup__form popup__form_place_edit" name="popupedit">
-                    <input name="popupname" placeholder="Введите имя" class="popup__input popup__input_type_name" type="text" required>
-                    <input name="popupsignature" placeholder="Введите подпись" class="popup__input popup__input_type_signature" type="text" required>
+                    <input name="name" placeholder="Введите имя" class="popup__input popup__input_type_name" type="text" minlength="2" maxlength="40" required>
+                    <span id="name-error" class="popup__error">Нет ошибки</span>
+                    <input name="signature" placeholder="Введите подпись" class="popup__input popup__input_type_signature" type="text" minlength="2" maxlength="200" required>
+                    <span id="signature-error" class="popup__error">Нет ошибки</span>
                     <button type="submit" class="popup__submit" aria-label="Сохранить изменения.">Сохранить</button>
                 </form>
             </div>
@@ -49,9 +51,11 @@
                 <button class="popup__close popup__close_form_add" aria-label="Закрыть форму."></button>
                 <h3 class="popup__title">Новое место</h3>
                 <form class="popup__form popup__form_place_add" name="popupedit">
-                    <input name="popupname" placeholder="Название" class="popup__input popup__input_type_nameCard" type="text" required>
-                    <input name="popupsignature" placeholder="Ссылка на картинку" class="popup__input popup__input_type_src" type="url" required>
-                    <button type="submit" class="popup__submit" aria-label="Сохранить изменения.">Создать</button>
+                    <input name="cardname" placeholder="Название" class="popup__input popup__input_type_nameCard" type="text" minlength="2" maxlength="30" required>
+                    <span id="cardname-error" class="popup__error">Нет ошибки</span>
+                    <input name="adress" placeholder="Ссылка на картинку" class="popup__input popup__input_type_src" type="url" required>
+                    <span id="adress-error" class="popup__error">Нет ошибки</span>
+                    <button type="submit" class="popup__submit popup__submit_disabled" aria-label="Сохранить изменения." disabled="true">Создать</button>
                 </form>
             </div>
         </div>
@@ -74,5 +78,6 @@
         </template>
     </div>
     <script src="script/script.js"></script>
+    <script src="script/validate.js"></script>
 </body>
 </html>

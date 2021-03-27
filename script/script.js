@@ -97,6 +97,17 @@ function tranferToForm () { // Функция передает текст с с�
 
 function openPopup (popup) { //oткрывает попап
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', function closeOnClick(evt) { //добавляет слушатель для закрытия по щелчку вне поля
+    if (!evt.target.closest('.popup__container')) {
+      closePopup(popup);
+    }
+  });
+  document.addEventListener('keydown', function closeOnButton(evt) { //добавляет слушатель для закрытия по нажатию Esc
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+      this.removeEventListener('keydown', closeOnButton);
+    }
+  });
 };
 
 function openPopupEdit () {
