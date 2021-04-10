@@ -1,3 +1,6 @@
+import { Card } from './Card.js';
+import { FormValidator, elementValidation } from './FormValidator.js';
+
 const formElement = document.querySelector(".popup__form_place_edit"); // Находим форму редактирования в DOM
 const formElementAdd = document.querySelector(".popup__form_place_add"); // Находим форму добавления в DOM
 const nameInput = formElement.querySelector(".popup__input_type_name"); // Находим поля формы редактирования в DOM
@@ -14,11 +17,10 @@ const addPopupForm = document.querySelector(".profile__button-add"); //Нахо�
 const closeProfile = document.querySelector(".popup__close_form_edit"); //Находим кнопки "закрыть"
 const closeFormAdd = document.querySelector(".popup__close_form_add");
 const closeImage = document.querySelector(".popup__close_show_image");
-const image = document.querySelector(".popup__image"); //Находим картинку в попап
-const imageInfo = document.querySelector(".popup__info-image"); //и описания
-const elementList = document.querySelector(".elements");
-const elementTemplate = document.querySelector(".element__template").content;
 const popupCollection = document.querySelectorAll(".popup");
+const popupButton = formElementAdd.querySelector('.popup__submit');
+const formValidatorEdit = new FormValidator(elementValidation, formElement);
+const formValidatorAdd = new FormValidator(elementValidation, formElementAdd);
 
 const initialCards = [
   {
@@ -53,56 +55,10 @@ const initialCards = [
   },
 ];
 
-function hitLike(cardElements) {
-  //функция позволяет ставить лайки
-  cardElements
-    .querySelector(".element__like")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__like_status_active");
-    });
-}
-
-function delButton(cardElements) {
-  //добавляет возможность удалить карточку по клику на кнопку
-  const deleteButton = cardElements.querySelector(".element__trash-can");
-  deleteButton.addEventListener("click", function () {
-    const listItem = deleteButton.closest(".element");
-    listItem.remove();
-  });
-}
-
-function setImagePopup(cardElements) {
-  //добавляет возможность открыть карточку по клику на картинку
-  cardElements
-    .querySelector(".element__image")
-    .addEventListener("click", function (evt) {
-      openPopupImage();
-      image.src = evt.target.src;
-      const parrent = evt.target.parentElement;
-      const text = parrent.querySelector(".element__title");
-      imageInfo.textContent = text.textContent;
-    });
-}
-
-function createCard(cardName, cardUrl) {
-  //создает карточку
-  const cardElements = elementTemplate.cloneNode(true);
-
-  cardElements.querySelector(".element__title").textContent = cardName;
-  cardElements.querySelector(".element__image").src = cardUrl;
-
-  hitLike(cardElements);
-  delButton(cardElements);
-  setImagePopup(cardElements);
-
-  return cardElements;
-}
-
 initialCards.forEach(function (element) {
   //Добавляем карточки на странице
-  const newCard = createCard(element.name, element.link);
-
-  elementList.append(newCard);
+  const card = new Card(element, '.element__template');
+  card.createCard();
 });
 
 function fillForm() {
@@ -133,7 +89,7 @@ function openPopupAdd() {
   openPopup(popupAdd);
 }
 
-function openPopupImage() {
+export function openPopupImage() {
   openPopup(popupImage);
 }
 
@@ -170,8 +126,14 @@ function resetForm(form) {
 function formSubmitAdd(evt) {
   // Добавляем карточки
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  const newCard = createCard(nameCard.value, srcCard.value);
-  elementList.prepend(newCard);
+  const newCard = {
+      name: nameCard.value,
+      link: srcCard.value
+  }
+  const card = new Card(newCard, '.element__template');
+  card.createCardPrepend();
+  popupButton.setAttribute("disabled", true);
+  popupButton.classList.add('popup__submit_disabled');
   resetForm(formElementAdd);
   closePopupAdd();
 }
@@ -184,6 +146,9 @@ popupCollection.forEach((popupElement) => {
     }
   });
 });
+
+formValidatorEdit.enableValidation();
+formValidatorAdd.enableValidation();
 
 edditProfile.addEventListener("click", openPopupEdit);
 closeProfile.addEventListener("click", closePopupEdit);
