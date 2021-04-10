@@ -1,7 +1,6 @@
 import { openPopupImage } from "./index.js";
 
 const elementList = document.querySelector(".elements");
-const elementTemplate = document.querySelector(".element__template").content;
 const image = document.querySelector(".popup__image"); //Находим картинку в попап
 const imageInfo = document.querySelector(".popup__info-image"); //и описания
 

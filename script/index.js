@@ -69,7 +69,7 @@ function fillForm() {
 
 function closeEsc(evt) {
   if (evt.key === "Escape") {
-    popupOpened = document.querySelector(".popup_opened");
+    const popupOpened = document.querySelector(".popup_opened");
     closePopup(popupOpened);
   }
 }
