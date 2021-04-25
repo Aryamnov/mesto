@@ -18,9 +18,7 @@ export class FormValidator {
 
   _chechHasInvalidInput = () => {
     //Проверяет, если ли ошибки в ввёденых данных
-    return this._inputList.some(
-      (inputElement) => !inputElement.validity.valid
-    );
+    return this._inputList.some((inputElement) => !inputElement.validity.valid);
   };
 
   _toggleButtonState = () => {
@@ -57,9 +55,9 @@ export class FormValidator {
   _checkInput = (inputElement) => {
     //Проверяет, есть ли ошибки и показывает/скрывает по результату
     if (inputElement.validity.valid) {
-        this._hideInputError(inputElement);
+      this._hideInputError(inputElement);
     } else {
-        this._showInputError(inputElement);
+      this._showInputError(inputElement);
     }
   };
 

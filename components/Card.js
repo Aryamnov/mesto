@@ -1,15 +1,11 @@
-import { openPopupImage } from "./index.js";
-
-const elementList = document.querySelector(".elements");
-const image = document.querySelector(".popup__image"); //Находим картинку в попап
-const imageInfo = document.querySelector(".popup__info-image"); //и описания
+import { elementList, image, imageInfo } from "../utils/constants.js";
 
 export class Card {
-  constructor(item, selectTemplate) {
+  constructor(item, selectTemplate, { handleCardClick }) {
     this._name = item.name;
     this._link = item.link;
     this._selectTemplate = selectTemplate;
-    this._cardElements;
+    this._handleCardClick = handleCardClick;
   }
 
   _hitLike() {
@@ -32,19 +28,6 @@ export class Card {
     });
   }
 
-  _setImagePopup() {
-    //добавляет возможность открыть карточку по клику на картинку
-    this._cardElements
-      .querySelector(".element__image")
-      .addEventListener("click", function (evt) {
-        openPopupImage();
-        image.src = evt.target.src;
-        const parrent = evt.target.parentElement;
-        const text = parrent.querySelector(".element__title");
-        imageInfo.textContent = text.textContent;
-      });
-  }
-
   _renderCard() {
     //создает карточку
     this._cardElements = document
@@ -58,13 +41,19 @@ export class Card {
 
     this._hitLike();
     this._delButton();
-    this._setImagePopup();
+    this._cardElements
+      .querySelector(".element__image")
+      .addEventListener("click", (evt) => {
+        this._handleCardClick(evt);
+      });
+
+    //this._setImagePopup();
   }
 
   createCard() {
     //создает карточку и добавляет в конец
     this._renderCard();
-    elementList.append(this._cardElements);
+    return this._cardElements;
   }
 
   createCardPrepend() {
