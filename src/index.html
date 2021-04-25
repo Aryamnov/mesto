@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto Russia</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <!--<link rel="stylesheet" href="./pages/index.css">-->
     <meta name="description" content="Практическая работа №4">
     <meta name="keywords" content="html, css, javascript, js">
     <meta name="author" content="Андрей Арямнов">
@@ -12,11 +12,11 @@
 <body>
     <div class="page">
         <header class="header">
-            <img src="images/logo.svg" alt="Логотип сайта с текстом Mesto Russia." class="header__logo">
+            <img src="<%=require('./images/logo.svg')%>" alt="Логотип сайта с текстом Mesto Russia." class="header__logo">
         </header>
         <main class="content">
             <section class="profile">
-                <img src="images/image.jpg" alt="Аватарка." class="profile__avatar">
+                <img src="<%=require('./images/image.jpg')%>" alt="Аватарка." class="profile__avatar">
                 <div class="profile__info">
                     <div class="profile__title-button">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -77,6 +77,5 @@
             </li>
         </template>
     </div>
-    <script type="module" src="./pages/index.js"></script>
 </body>
 </html>
