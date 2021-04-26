@@ -36,7 +36,8 @@ const popupWithImage = new PopupWithImage(popupImage);
 popupWithImage.setEventListeners();
 
 function newCreateCard(element, selectTemplate) {
-  const card = new Card(element, selectTemplate, { handleCardClick: (evt) => {
+  const card = new Card(element, selectTemplate, {
+    handleCardClick: (evt) => {
       const link = element.link;
       const name = element.name;
       popupWithImage.open(name, link);
@@ -44,7 +45,6 @@ function newCreateCard(element, selectTemplate) {
   });
   return card.createCard();
 }
-
 
 const cardList = new Section(
   {

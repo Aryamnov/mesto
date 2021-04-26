@@ -1,9 +1,6 @@
 import { Popup } from "./Popup.js";
 
-import {
-  formElement,
-  formElementAdd
-} from "../utils/constants.js";
+import { formElement, formElementAdd } from "../utils/constants.js";
 
 export class PopupWithForm extends Popup {
   constructor(elementDOM, { sumbitCallback }) {
@@ -15,9 +12,11 @@ export class PopupWithForm extends Popup {
 
   _getInputValues() {
     //функция получения данных с полей форм
-    this._inputList = this._selectFormEdit.querySelectorAll('.popup__input');
+    this._inputList = this._selectFormEdit.querySelectorAll(".popup__input");
     this._formValues = {};
-    this._inputList.forEach(input => this._formValues[input.name] = input.value);
+    this._inputList.forEach(
+      (input) => (this._formValues[input.name] = input.value)
+    );
     return this._formValues;
   }
 
