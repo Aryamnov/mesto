@@ -1,26 +1,16 @@
-import { popupCollection } from "../utils/constants.js";
-
 export class Popup {
-  constructor(selectorPopup) {
-    this._selectorPopup = selectorPopup;
-    this._closeButton = this._selectorPopup.querySelector(".popup__close");
+  constructor(elementDOM) {
+    this._elementDOM = elementDOM;
+    this._closeButton = this._elementDOM.querySelector(".popup__close");
   }
 
   open() {
-    this._selectorPopup.classList.add("popup_opened");
+    this._elementDOM.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
-    popupCollection.forEach((popupElement) => {
-      popupElement.addEventListener("click", (evt) => {
-        //добавляет слушатель для закрытия по щелчку вне поля
-        if (!evt.target.closest(".popup__container")) {
-          this.close();
-        }
-      });
-    });
   }
 
   close() {
-    this._selectorPopup.classList.remove("popup_opened");
+    this._elementDOM.classList.remove("popup_opened");
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
@@ -33,6 +23,10 @@ export class Popup {
   }
 
   setEventListeners() {
-    this._closeButton.addEventListener("click", this.close);
+    this._elementDOM.addEventListener("click", (evt) => {
+      if (!evt.target.closest(".popup__container") || evt.target.classList.contains('popup__close')) {
+        this.close();
+      }
+    });
   }
 }

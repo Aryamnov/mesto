@@ -1,5 +1,3 @@
-import { elementList, image, imageInfo } from "../utils/constants.js";
-
 export class Card {
   constructor(item, selectTemplate, { handleCardClick }) {
     this._name = item.name;
@@ -54,11 +52,5 @@ export class Card {
     //создает карточку и добавляет в конец
     this._renderCard();
     return this._cardElements;
-  }
-
-  createCardPrepend() {
-    //создает карточку и добавляет в начале списка
-    this._renderCard();
-    elementList.prepend(this._cardElements);
   }
 }

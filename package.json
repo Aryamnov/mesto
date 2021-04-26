@@ -4,7 +4,7 @@
   "description": "Проект представляет собой сайт с профилем человека и его фотографии с коротким указанием места.\r Сайт разработан на основании макета: [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=28212%3A269)",
   "main": "index.js",
   "scripts": {
-    "build": "rd /s /q dist && webpack --mode production",
+    "build": "webpack --mode production",
     "dev": "webpack serve"
   },
   "repository": {

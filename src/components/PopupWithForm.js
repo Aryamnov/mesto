@@ -2,16 +2,12 @@ import { Popup } from "./Popup.js";
 
 import {
   formElement,
-  formElementAdd,
-  nameInput,
-  jobInput,
-  nameCard,
-  srcCard,
+  formElementAdd
 } from "../utils/constants.js";
 
 export class PopupWithForm extends Popup {
-  constructor(selectorPopup, { sumbitCallback }) {
-    super(selectorPopup);
+  constructor(elementDOM, { sumbitCallback }) {
+    super(elementDOM);
     this._sumbitCallback = sumbitCallback;
     this._selectFormEdit = formElement;
     this._selectFormAdd = formElementAdd;
@@ -19,18 +15,15 @@ export class PopupWithForm extends Popup {
 
   _getInputValues() {
     //функция получения данных с полей форм
-    const formData = {
-      nameNewInput: nameInput.value,
-      jobNewInput: jobInput.value,
-      nameNewCard: nameCard.value,
-      srcNewImage: srcCard.value,
-    };
-    return formData;
+    this._inputList = this._selectFormEdit.querySelectorAll('.popup__input');
+    this._formValues = {};
+    this._inputList.forEach(input => this._formValues[input.name] = input.value);
+    return this._formValues;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._selectorPopup
+    this._elementDOM
       .querySelector(".popup__form")
       .addEventListener("submit", (evt) => {
         evt.preventDefault();
@@ -42,7 +35,7 @@ export class PopupWithForm extends Popup {
   close() {
     //закрывает попап и сбрасывает все формы
     super.close();
-    this._selectFormEdit.reset();
-    this._selectFormAdd.reset();
+    formElement.reset();
+    formElementAdd.reset();
   }
 }

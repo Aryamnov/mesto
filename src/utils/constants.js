@@ -22,6 +22,7 @@ export const popupButton = formElementAdd.querySelector(".popup__submit");
 export const image = document.querySelector(".popup__image"); //Находим картинку в попап
 export const imageInfo = document.querySelector(".popup__info-image"); //и описания
 export const elementList = document.querySelector(".elements");
+export const popup__submit_disabled = "popup__submit_disabled";
 
 export const initialCards = [
   {
@@ -55,3 +56,12 @@ export const initialCards = [
       "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+export const elementValidation = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit",
+  inactiveButtonClass: "popup__submit_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};

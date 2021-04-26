@@ -16,8 +16,8 @@ export class UserInfo {
 
   setUserInfo(newInfo) {
     //записывает в объект и DOM значения с формы
-    this._nameProfile = newInfo.nameNewInput;
-    this._signatureProfile = newInfo.jobNewInput;
+    this._nameProfile = newInfo.name;
+    this._signatureProfile = newInfo.signature;
     nameProfile.textContent = this._nameProfile;
     signatureProfile.textContent = this._signatureProfile;
   }
