@@ -35,6 +35,7 @@ export class Card {
     this._cardElements.querySelector(
       ".element__title"
     ).textContent = this._name;
+    this._cardElements.querySelector(".element__image").alt = this._name;
     this._cardElements.querySelector(".element__image").src = this._link;
 
     this._hitLike();
