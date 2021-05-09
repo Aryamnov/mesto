@@ -16,7 +16,10 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img src="<%=require('./images/image.jpg')%>" alt="Аватарка." class="profile__avatar">
+                <div class="profile__avatar-block">
+                    <img src="<%=require('./images/image.jpg')%>" alt="Аватарка." class="profile__avatar">
+                    <img src="<%=require('./images/pen.svg')%>" alt="Аватарка." class="profile__avatar-edit">
+                </div>
                 <div class="profile__info">
                     <div class="profile__title-button">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -40,9 +43,9 @@
                 <form class="popup__form popup__form_place_edit" name="popupedit">
                     <input name="name" placeholder="Введите имя" class="popup__input popup__input_type_name" type="text" minlength="2" maxlength="40" required>
                     <span id="name-error" class="popup__error">Нет ошибки</span>
-                    <input name="signature" placeholder="Введите подпись" class="popup__input popup__input_type_signature" type="text" minlength="2" maxlength="200" required>
+                    <input name="about" placeholder="Введите подпись" class="popup__input popup__input_type_signature" type="text" minlength="2" maxlength="200" required>
                     <span id="signature-error" class="popup__error">Нет ошибки</span>
-                    <button type="submit" class="popup__submit" aria-label="Сохранить изменения.">Сохранить</button>
+                    <button type="submit" class="popup__submit popup__submit_edit" aria-label="Сохранить изменения.">Сохранить</button>
                 </form>
             </div>
         </div>
@@ -55,7 +58,27 @@
                     <span id="cardname-error" class="popup__error">Нет ошибки</span>
                     <input name="adress" placeholder="Ссылка на картинку" class="popup__input popup__input_type_src" type="url" required>
                     <span id="adress-error" class="popup__error">Нет ошибки</span>
-                    <button type="submit" class="popup__submit popup__submit_disabled" aria-label="Сохранить изменения." disabled>Создать</button>
+                    <button type="submit" class="popup__submit popup__submit_add popup__submit_disabled" aria-label="Сохранить изменения." disabled>Создать</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_form_link">
+            <div class="popup__container">
+                <button class="popup__close popup__close_form_link" aria-label="Закрыть форму."></button>
+                <h3 class="popup__title">Обновить аватар</h3>
+                <form class="popup__form popup__form_place_link" name="popuplink">
+                    <input name="link" placeholder="Ссылка на аватар" class="popup__input popup__input_type_src" type="url" required>
+                    <span id="link-error" class="popup__error">Нет ошибки</span>
+                    <button type="submit" class="popup__submit popup__submit_link popup__submit_disabled" aria-label="Сохранить изменения." disabled>Сохранить</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_form_delete">
+            <div class="popup__container">
+                <button class="popup__close popup__close_form_delete" aria-label="Закрыть форму."></button>
+                <h3 class="popup__title popup__title_delete">Вы уверены?</h3>
+                <form class="popup__form popup__form_place_delete" name="popupdelete">
+                    <button type="submit" class="popup__submit popup__submit_delete" aria-label="Удалить.">Да</button>
                 </form>
             </div>
         </div>
@@ -72,7 +95,10 @@
                 <button class="element__trash-can"></button>
                 <div class="element__info">
                     <h2 class="element__title"></h2>
-                    <button type="button" class="element__like" aria-label="Указать, что понравилась фотография."></button>
+                    <div class="element__like-block">
+                        <button type="button" class="element__like" aria-label="Указать, что понравилась фотография."></button>
+                        <span class="element__like-span">0</span>
+                    </div>
                 </div>
             </li>
         </template>

@@ -18,7 +18,7 @@ export class Popup {
     if (evt.key === "Escape") {
       this.close();
     }
-  }
+  };
 
   setEventListeners() {
     this._elementDOM.addEventListener("click", (evt) => {

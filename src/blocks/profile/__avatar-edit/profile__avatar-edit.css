@@ -1,0 +1,14 @@
+.profile__avatar-edit {
+    position: absolute;
+    top: 47px;
+    left: 47px;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 0.8s;
+}
+
+.profile__avatar-edit:hover {
+    visibility: visible;
+    opacity: 1;
+}
