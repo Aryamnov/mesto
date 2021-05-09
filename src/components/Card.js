@@ -29,12 +29,10 @@ export class Card {
           },
         });
         idCard = evt.target.id;
-        console.log(idCard);
         if (!evt.target.classList.contains("element__like_status_active")) {
           const hitApi = api
             .likeCard(idCard)
             .then((data) => {
-              console.log(data);
               evt.target.classList.add("element__like_status_active");
               parent = evt.target.parentElement;
               parent.querySelector(".element__like-span").textContent =
@@ -47,7 +45,6 @@ export class Card {
           const hitApi = api
             .likeDisableCard(idCard)
             .then((data) => {
-              console.log(data);
               evt.target.classList.remove("element__like_status_active");
               parent = evt.target.parentElement;
               parent.querySelector(".element__like-span").textContent =
@@ -71,7 +68,6 @@ export class Card {
       popupWithFormDelete.setEventListeners();
       popupWithFormDelete.open(popupDelete);
       idCard = evt.target.id;
-      console.log(idCard);
       popupDelete.addEventListener("submit", (evt) => {
         evt.preventDefault();
         const api = new Api({

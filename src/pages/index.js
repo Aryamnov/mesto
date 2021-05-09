@@ -56,7 +56,6 @@ const userInfo = new UserInfo(
 
 const userData = api.getDataUser();
 userData.then((data) => {
-  console.log(data);
   nameProfile.textContent = data.name;
   signatureProfile.textContent = data.about;
   avatar.src = data.avatar;
@@ -64,10 +63,6 @@ userData.then((data) => {
 });
 
 const allCards = api.getAllCard();
-console.log(allCards);
-allCards.then((data) => {
-  data.map((item) => console.log(item));
-});
 
 const popupWithImage = new PopupWithImage(popupImage);
 popupWithImage.setEventListeners();
@@ -107,7 +102,6 @@ allCards.then((data) => {
 
 const popupWithFormEdit = new PopupWithForm(popupEdit, {
   sumbitCallback: (data) => {
-    console.log(popup__submit_edit.textContent);
     popup__submit_edit.textContent = "Сохранение...";
     const newDataUser = api
       .setUserInfo(data.name, data.about)
@@ -126,7 +120,6 @@ popupWithFormEdit.setEventListeners();
 const popupWithFormLink = new PopupWithForm(popupLink, {
   sumbitCallback: (item) => {
     popup__submit_link.textContent = "Сохранение...";
-    console.log(item.link);
     const newDataUser = api
       .newAvatar(item.link)
       .then((data) => {
@@ -155,7 +148,6 @@ const popupWithFormAdd = new PopupWithForm(popupAdd, {
     };
     const newCardAdd = api.addNewCard(newCard);
     newCardAdd.then((item) => {
-      console.log(item);
       const cardList = new Section(
         {
           //Добавляем карточки на странице
@@ -167,7 +159,6 @@ const popupWithFormAdd = new PopupWithForm(popupAdd, {
         },
         elementList
       );
-      console.log("и сюда");
       cardList.renderItems();
       popupButton.textContent = "Создать";
     });

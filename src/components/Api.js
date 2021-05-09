@@ -9,7 +9,6 @@ export class Api {
       method: "GET",
       headers: this._headers,
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
@@ -23,7 +22,6 @@ export class Api {
       method: "GET",
       headers: this._headers,
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
@@ -41,7 +39,6 @@ export class Api {
         about: newAbout,
       }),
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
@@ -59,7 +56,6 @@ export class Api {
         link: newCard.link,
       }),
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
@@ -73,7 +69,6 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
@@ -87,7 +82,6 @@ export class Api {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
@@ -101,7 +95,6 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
@@ -118,7 +111,6 @@ export class Api {
         avatar: link,
       }),
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       }
