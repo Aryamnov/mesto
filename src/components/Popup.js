@@ -30,4 +30,16 @@ export class Popup {
       }
     });
   }
+
+  setSubmitAction(action) {
+    this._handleSubmitCallback = action;
+  }
+
+  setEventListenersSubmit() {
+    this._elementDOM.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._handleSubmitCallback();
+    });
+  }
+
 }

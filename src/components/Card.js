@@ -1,12 +1,9 @@
-import { popupDelete } from "../utils/constants.js";
-
 import { idCard } from "../pages/index.js";
 
-import { Popup } from "../components/Popup.js";
 import { Api } from "../components/Api.js";
 
 export class Card {
-  constructor(item, selectTemplate, { handleCardClick }) {
+  constructor(item, selectTemplate, { handleCardClick, handleDeleteIconClick }) {
     this._name = item.name;
     this._link = item.link;
     this._likes = item.likes;
@@ -14,6 +11,7 @@ export class Card {
     this._userId = item.owner._id;
     this._selectTemplate = selectTemplate;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteIconClick = handleDeleteIconClick;
   }
 
   _hitLike() {
@@ -63,32 +61,16 @@ export class Card {
       ".element__trash-can"
     );
 
-    deleteButton.addEventListener("click", function (evt) {
-      const popupWithFormDelete = new Popup(popupDelete);
-      popupWithFormDelete.setEventListeners();
-      popupWithFormDelete.open(popupDelete);
+    deleteButton.addEventListener("click", (evt) => {
       idCard = evt.target.id;
-      popupDelete.addEventListener("submit", (evt) => {
-        evt.preventDefault();
-        const api = new Api({
-          url: "https://mesto.nomoreparties.co/v1/cohort-23/",
-          headers: {
-            authorization: "0d53c9da-d73c-4f78-96df-8f4e01440995",
-            "content-type": "application/json",
-          },
-        });
-        const deleteCardApi = api
-          .deleteCard(idCard)
-          .then((data) => {
-            const listItem = deleteButton.closest(".element");
-            listItem.remove();
-            popupWithFormDelete.close();
-          })
-          .catch((err) => {
-            console.log("Невозможно удалить карточку");
-          });
-      });
+      this._handleDeleteIconClick(idCard);
     });
+  }
+
+  removeCard() {
+    const deleteButton = document.getElementById(idCard);
+    const listItem = deleteButton.closest(".element");
+    listItem.remove();
   }
 
   _renderCard() {

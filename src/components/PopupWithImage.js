@@ -1,5 +1,7 @@
 import { Popup } from "../components/Popup.js";
-import { image, imageInfo } from "../utils/constants.js";
+
+const image = document.querySelector(".popup__image"); //Находим картинку в попап
+const imageInfo = document.querySelector(".popup__info-image"); //и описания
 
 export class PopupWithImage extends Popup {
   open(name, link) {
@@ -8,5 +10,16 @@ export class PopupWithImage extends Popup {
     image.alt = name;
     imageInfo.textContent = name;
     super.open();
+  }
+
+  setEventListeners() {
+    this._elementDOM.addEventListener("click", (evt) => {
+      if (
+        !evt.target.closest(".popup__picture") ||
+        evt.target.classList.contains("popup__close")
+      ) {
+        this.close();
+      }
+    });
   }
 }

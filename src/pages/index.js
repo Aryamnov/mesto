@@ -1,6 +1,7 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
+import { Popup } from "../components/Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
@@ -33,13 +34,18 @@ import {
   closeFormLink,
   popup__submit_edit,
   popup__submit_link,
+  popupDelete,
 } from "../utils/constants.js";
 
-const idCard = "";
+let idCard = "";
 
 const formValidatorEdit = new FormValidator(elementValidation, formElement);
 const formValidatorAdd = new FormValidator(elementValidation, formElementAdd);
 const formValidatorLink = new FormValidator(elementValidation, formElementLink);
+
+const popupWithFormDelete = new Popup(popupDelete);
+popupWithFormDelete.setEventListeners();
+popupWithFormDelete.setEventListenersSubmit();
 
 const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-23/",
@@ -54,13 +60,18 @@ const userInfo = new UserInfo(
   signatureProfile.textContent
 );
 
+let userId = null;
+
 const userData = api.getDataUser();
 userData.then((data) => {
   nameProfile.textContent = data.name;
   signatureProfile.textContent = data.about;
   avatar.src = data.avatar;
   userInfo.setUserInfo(data);
+  userId = data._id;
 });
+
+
 
 const allCards = api.getAllCard();
 
@@ -77,8 +88,18 @@ function newCreateCard(element, selectTemplate) {
         const name = element.name;
         popupWithImage.open(name, link);
       },
-    },
-    api
+      handleDeleteIconClick: (id) => {
+        popupWithFormDelete.open();
+        popupWithFormDelete.setSubmitAction(function() {
+          api.deleteCard(id)
+          .then(() => {
+            card.removeCard();
+            popupWithFormDelete.close();
+          })
+          .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
+        });
+      },
+    }
   );
   return card.createCard();
 }

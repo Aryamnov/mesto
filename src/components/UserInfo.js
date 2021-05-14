@@ -1,4 +1,5 @@
-import { nameProfile, signatureProfile } from "../utils/constants.js";
+const nameProfile = document.querySelector(".profile__title"); // Находим значения строк профиля в DOM
+const signatureProfile = document.querySelector(".profile__subtitle");
 
 export class UserInfo {
   constructor(name, signature) {
