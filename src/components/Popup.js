@@ -36,10 +36,9 @@ export class Popup {
   }
 
   setEventListenersSubmit() {
-    this._elementDOM.addEventListener('submit', (evt) => {
+    this._elementDOM.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleSubmitCallback();
     });
   }
-
 }

@@ -1,5 +1,15 @@
 export class Card {
-  constructor(userId, item, selectTemplate, { handleCardClick, handleDeleteIconClick, handleLikeClick, handleDislikeClick }) {
+  constructor(
+    userId,
+    item,
+    selectTemplate,
+    {
+      handleCardClick,
+      handleDeleteIconClick,
+      handleLikeClick,
+      handleDislikeClick,
+    }
+  ) {
     this._name = item.name;
     this._link = item.link;
     this._likes = item.likes;
