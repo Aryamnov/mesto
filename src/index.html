@@ -17,8 +17,8 @@
         <main class="content">
             <section class="profile">
                 <div class="profile__avatar-block">
-                    <img src="<%=require('./images/image.jpg')%>" alt="Аватарка." class="profile__avatar">
                     <img src="<%=require('./images/pen.svg')%>" alt="Аватарка." class="profile__avatar-edit">
+                    <img src="<%=require('./images/image.jpg')%>" alt="Аватарка." class="profile__avatar">
                 </div>
                 <div class="profile__info">
                     <div class="profile__title-button">
@@ -44,7 +44,7 @@
                     <input name="name" placeholder="Введите имя" class="popup__input popup__input_type_name" type="text" minlength="2" maxlength="40" required>
                     <span id="name-error" class="popup__error">Нет ошибки</span>
                     <input name="about" placeholder="Введите подпись" class="popup__input popup__input_type_signature" type="text" minlength="2" maxlength="200" required>
-                    <span id="signature-error" class="popup__error">Нет ошибки</span>
+                    <span id="about-error" class="popup__error">Нет ошибки</span>
                     <button type="submit" class="popup__submit popup__submit_edit" aria-label="Сохранить изменения.">Сохранить</button>
                 </form>
             </div>

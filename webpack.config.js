@@ -10,6 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
     publicPath: "",
+    library: 'idCard'
   },
   mode: "development",
   devServer: {

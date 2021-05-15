@@ -1,10 +1,8 @@
 import { Popup } from "./Popup.js";
 
-import {
-  formElement,
-  formElementAdd,
-  formElementLink,
-} from "../utils/constants.js";
+const formElement = document.querySelector(".popup__form_place_edit"); // Находим форму редактирования в DOM
+const formElementAdd = document.querySelector(".popup__form_place_add"); // Находим форму добавления в DOM
+const formElementLink = document.querySelector(".popup__form_place_link"); // Находим форму добавления в DOM
 
 export class PopupWithForm extends Popup {
   constructor(elementDOM, { sumbitCallback }) {

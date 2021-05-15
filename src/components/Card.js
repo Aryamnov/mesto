@@ -1,56 +1,28 @@
-import { idCard } from "../pages/index.js";
-
-import { Api } from "../components/Api.js";
-
 export class Card {
-  constructor(item, selectTemplate, { handleCardClick, handleDeleteIconClick }) {
+  constructor(userId, item, selectTemplate, { handleCardClick, handleDeleteIconClick, handleLikeClick, handleDislikeClick }) {
     this._name = item.name;
     this._link = item.link;
     this._likes = item.likes;
     this._id = item._id;
-    this._userId = item.owner._id;
+    this._userIdCard = item.owner._id;
     this._selectTemplate = selectTemplate;
     this._handleCardClick = handleCardClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
+    this._handleDislikeClick = handleDislikeClick;
+    this._handleLikeClick = handleLikeClick;
+    this._userId = userId;
   }
 
   _hitLike() {
     //функция позволяет ставить лайки
     this._cardElements
       .querySelector(".element__like")
-      .addEventListener("click", function (evt) {
-        const api = new Api({
-          url: "https://mesto.nomoreparties.co/v1/cohort-23/",
-          headers: {
-            authorization: "0d53c9da-d73c-4f78-96df-8f4e01440995",
-            "content-type": "application/json",
-          },
-        });
+      .addEventListener("click", (evt) => {
         idCard = evt.target.id;
         if (!evt.target.classList.contains("element__like_status_active")) {
-          const hitApi = api
-            .likeCard(idCard)
-            .then((data) => {
-              evt.target.classList.add("element__like_status_active");
-              parent = evt.target.parentElement;
-              parent.querySelector(".element__like-span").textContent =
-                data.likes.length;
-            })
-            .catch((err) => {
-              console.log("Произошла ошибка");
-            });
+          this._handleLikeClick(evt);
         } else {
-          const hitApi = api
-            .likeDisableCard(idCard)
-            .then((data) => {
-              evt.target.classList.remove("element__like_status_active");
-              parent = evt.target.parentElement;
-              parent.querySelector(".element__like-span").textContent =
-                data.likes.length;
-            })
-            .catch((err) => {
-              console.log("Произошла ошибка");
-            });
+          this._handleDislikeClick(evt);
         }
       });
   }
@@ -97,7 +69,7 @@ export class Card {
 
     this._hitLike();
 
-    if (this._userId != "934745e4b5697f429d92610b") {
+    if (this._userIdCard != this._userId) {
       this._cardElements.querySelector(".element__trash-can").style.display =
         "none";
     }

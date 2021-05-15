@@ -34,10 +34,10 @@ import {
   closeFormLink,
   popup__submit_edit,
   popup__submit_link,
-  popupDelete,
+  popupDelete
 } from "../utils/constants.js";
 
-let idCard = "";
+window.idCard = "";
 
 const formValidatorEdit = new FormValidator(elementValidation, formElement);
 const formValidatorAdd = new FormValidator(elementValidation, formElementAdd);
@@ -71,15 +71,9 @@ userData.then((data) => {
   userId = data._id;
 });
 
-
-
-const allCards = api.getAllCard();
-
-const popupWithImage = new PopupWithImage(popupImage);
-popupWithImage.setEventListeners();
-
-function newCreateCard(element, selectTemplate) {
+function newCreateCard(element, selectTemplate, userId) {
   const card = new Card(
+    userId,
     element,
     selectTemplate,
     {
@@ -99,12 +93,68 @@ function newCreateCard(element, selectTemplate) {
           .catch(err => console.log(`Ошибка при удалении карточки: ${err}`))
         });
       },
+      handleLikeClick: (evt) => {
+        api.likeCard(idCard)
+            .then((data) => {
+              evt.target.classList.add("element__like_status_active");
+              parent = evt.target.parentElement;
+              parent.querySelector(".element__like-span").textContent =
+                data.likes.length;
+            })
+            .catch((err) => {
+              console.log("Произошла ошибка");
+            });
+      },
+      handleDislikeClick: (evt) => {
+        api.likeDisableCard(idCard)
+            .then((data) => {
+              evt.target.classList.remove("element__like_status_active");
+              parent = evt.target.parentElement;
+              parent.querySelector(".element__like-span").textContent =
+                data.likes.length;
+            })
+            .catch((err) => {
+              console.log("Произошла ошибка");
+            });
+      }
     }
   );
   return card.createCard();
 }
 
-allCards.then((data) => {
+api.getAppInfo()
+  .then(([ cardsArray, userData ]) => {
+    // здесь мы сохранили наш id пользователя
+    userId = userData._id;
+    // устанавливаем данные о пользователе
+    userInfo.setUserInfo(userData);
+    // начинаем отрисовывать наши карточки
+    // уже есть данные о карточках, а id пользователя
+    // мы сохранили в глобальную переменную чуть выше
+    cardsArray.map((item) => {
+        const cardList = new Section(
+          {
+            //Добавляем карточки на странице
+            items: item,
+            renderer: (element) => {
+              const cardElement = newCreateCard(element, ".element__template", userId);
+              cardList.addItem(cardElement);
+            },
+          },
+          elementList
+        );
+        cardList.renderItems();
+      });
+    });
+  
+
+
+//const allCards = api.getAllCard();
+
+const popupWithImage = new PopupWithImage(popupImage);
+popupWithImage.setEventListeners();
+
+/*allCards.then((data) => {
   data.map((item) => {
     const cardList = new Section(
       {
@@ -119,7 +169,7 @@ allCards.then((data) => {
     );
     cardList.renderItems();
   });
-});
+});*/
 
 const popupWithFormEdit = new PopupWithForm(popupEdit, {
   sumbitCallback: (data) => {
@@ -174,7 +224,7 @@ const popupWithFormAdd = new PopupWithForm(popupAdd, {
           //Добавляем карточки на странице
           items: item,
           renderer: (element) => {
-            const cardElement = newCreateCard(element, ".element__template");
+            const cardElement = newCreateCard(element, ".element__template", userId);
             cardList.addItemPrepend(cardElement);
           },
         },
