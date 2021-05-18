@@ -8,23 +8,19 @@ export class UserInfo {
   getUserInfo() {
     //получает текущие данные пользователя
     return {
-      nameProfile: this._nameProfile,
-      signatureProfile: this._signatureProfile,
-      avatar: this._avatar,
+      nameProfile: this._nameProfile.textContent,
+      signatureProfile: this._signatureProfile.textContent,
+      avatar: this._avatar.src,
     };
   }
 
   setUserInfo(newInfo) {
     //записывает в объект и DOM значения с формы
-    this._nameProfile = newInfo.name;
-    this._signatureProfile = newInfo.about;
-    document.querySelector(".profile__title").textContent = this._nameProfile;
-    document.querySelector(".profile__subtitle").textContent =
-      this._signatureProfile;
+    this._nameProfile.textContent = newInfo.name;
+    this._signatureProfile.textContent = newInfo.about;
   }
 
   setUserAvatar(newInfo) {
-    this._avatar = newInfo.avatar;
-    document.querySelector(".profile__avatar").src = this._avatar;
+    this._avatar.src = newInfo.avatar;
   }
 }

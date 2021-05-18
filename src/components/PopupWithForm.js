@@ -19,13 +19,11 @@ export class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._elementDOM
-      .querySelector(".popup__form")
-      .addEventListener("submit", (evt) => {
-        evt.preventDefault();
-        const data = this.getInputValues();
-        this._sumbitCallback(data);
-      });
+    this._form.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      const data = this.getInputValues();
+      this._sumbitCallback(data);
+    });
   }
 
   close() {

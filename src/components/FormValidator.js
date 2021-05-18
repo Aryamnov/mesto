@@ -24,8 +24,7 @@ export class FormValidator {
   toggleButtonState = () => {
     //Блокирует и снимает блокировку с кнопки
     if (this._chechHasInvalidInput() || this._checkInputsEmpty()) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute("disabled", true);
+      this.disableButton();
     } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.removeAttribute("disabled");

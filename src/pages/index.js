@@ -41,7 +41,6 @@ const formValidatorLink = new FormValidator(elementValidation, formElementLink);
 
 const popupWithFormDelete = new ConfirmationPopup(popupDelete);
 popupWithFormDelete.setEventListeners();
-//popupWithFormDelete.setEventListenersSubmit();
 
 const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-23/",
@@ -51,11 +50,7 @@ const api = new Api({
   },
 });
 
-const userInfo = new UserInfo(
-  nameProfile.textContent,
-  signatureProfile.textContent,
-  avatar.src
-);
+const userInfo = new UserInfo(nameProfile, signatureProfile, avatar);
 
 let userId = null;
 
@@ -185,7 +180,6 @@ const popupWithFormAdd = new PopupWithForm(popupAdd, {
         popupButton.textContent = "Создать";
         formValidatorAdd.toggleButtonState();
       });
-    formValidatorAdd.disableButton();
   },
 });
 popupWithFormAdd.setEventListeners();
