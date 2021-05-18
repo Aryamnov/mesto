@@ -23,6 +23,12 @@ export class Card {
     this._userId = userId;
   }
 
+  updateLikes(data, evt) {
+    evt.target.classList.toggle("element__like_status_active");
+    parent = evt.target.parentElement;
+    parent.querySelector(".element__like-span").textContent = data.likes.length;
+  }
+
   _hitLike() {
     //функция позволяет ставить лайки
     this._cardElements
@@ -50,28 +56,25 @@ export class Card {
   }
 
   removeCard() {
-    const deleteButton = document.getElementById(idCard);
-    const listItem = deleteButton.closest(".element");
-    listItem.remove();
+    this._cardElements.remove();
   }
 
   _renderCard() {
     //создает карточку
     this._cardElements = document
       .querySelector(this._selectTemplate)
-      .content.cloneNode(true);
+      .content.cloneNode(true)
+      .querySelector(".element");
 
-    this._cardElements.querySelector(
-      ".element__title"
-    ).textContent = this._name;
+    this._cardElements.querySelector(".element__title").textContent =
+      this._name;
     this._cardElements.querySelector(".element__image").alt = this._name;
     this._cardElements.querySelector(".element__image").src = this._link;
-    this._cardElements.querySelector(
-      ".element__like-span"
-    ).textContent = this._likes.length;
+    this._cardElements.querySelector(".element__like-span").textContent =
+      this._likes.length;
     this._cardElements.querySelector(".element__trash-can").id = this._id;
     this._cardElements.querySelector(".element__like").id = this._id;
-    if (this._likes.find((like) => like._id === "934745e4b5697f429d92610b")) {
+    if (this._likes.find((like) => like._id === this._userId)) {
       this._cardElements
         .querySelector(".element__like")
         .classList.add("element__like_status_active");

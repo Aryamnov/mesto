@@ -33,8 +33,8 @@ export const imageInfo = document.querySelector(".popup__info-image"); //и оп
 export const elementList = document.querySelector(".elements");
 export const popup__submit_disabled = "popup__submit_disabled";
 export const avatar = document.querySelector(".profile__avatar");
-export const popup__submit_edit = document.querySelector(".popup__submit_edit");
-export const popup__submit_link = document.querySelector(".popup__submit_link");
+export const popupSubmitEdit = document.querySelector(".popup__submit_edit");
+export const popupSubmitLink = document.querySelector(".popup__submit_link");
 
 export const initialCards = [
   {

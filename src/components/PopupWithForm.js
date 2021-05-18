@@ -1,21 +1,15 @@
 import { Popup } from "./Popup.js";
 
-const formElement = document.querySelector(".popup__form_place_edit"); // Находим форму редактирования в DOM
-const formElementAdd = document.querySelector(".popup__form_place_add"); // Находим форму добавления в DOM
-const formElementLink = document.querySelector(".popup__form_place_link"); // Находим форму добавления в DOM
-
 export class PopupWithForm extends Popup {
   constructor(elementDOM, { sumbitCallback }) {
     super(elementDOM);
     this._sumbitCallback = sumbitCallback;
-    this._selectFormEdit = formElement;
-    this._selectFormAdd = formElementAdd;
-    this._selectFormLink = formElementLink;
+    this._form = this._elementDOM.querySelector(".popup__form");
   }
 
-  _getInputValues() {
+  getInputValues() {
     //функция получения данных с полей форм
-    this._inputList = this._selectFormEdit.querySelectorAll(".popup__input");
+    this._inputList = this._form.querySelectorAll(".popup__input");
     this._formValues = {};
     this._inputList.forEach(
       (input) => (this._formValues[input.name] = input.value)
@@ -29,28 +23,7 @@ export class PopupWithForm extends Popup {
       .querySelector(".popup__form")
       .addEventListener("submit", (evt) => {
         evt.preventDefault();
-        const data = this._getInputValues();
-        this._sumbitCallback(data);
-      });
-  }
-
-  _getInputValuesLink() {
-    //функция получения ссылки с поля ввода адреса аватара
-    this._inputList = this._selectFormLink.querySelectorAll(".popup__input");
-    this._formValues = {};
-    this._inputList.forEach(
-      (input) => (this._formValues[input.name] = input.value)
-    );
-    return this._formValues;
-  }
-
-  setEventListenersLink() {
-    super.setEventListeners();
-    this._elementDOM
-      .querySelector(".popup__form")
-      .addEventListener("submit", (evt) => {
-        evt.preventDefault();
-        const data = this._getInputValuesLink();
+        const data = this.getInputValues();
         this._sumbitCallback(data);
       });
   }
@@ -58,8 +31,6 @@ export class PopupWithForm extends Popup {
   close() {
     //закрывает попап и сбрасывает все формы
     super.close();
-    formElement.reset();
-    formElementAdd.reset();
-    formElementLink.reset();
+    this._form.reset();
   }
 }

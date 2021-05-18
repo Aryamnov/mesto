@@ -21,7 +21,7 @@ export class FormValidator {
     return this._inputList.some((inputElement) => !inputElement.validity.valid);
   };
 
-  _toggleButtonState = () => {
+  toggleButtonState = () => {
     //Блокирует и снимает блокировку с кнопки
     if (this._chechHasInvalidInput() || this._checkInputsEmpty()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
@@ -30,6 +30,11 @@ export class FormValidator {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.removeAttribute("disabled");
     }
+  };
+
+  disableButton = () => {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute("disabled", true);
   };
 
   _showInputError = (inputElement) => {
@@ -49,7 +54,7 @@ export class FormValidator {
     );
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
-    errorElement.textContent = "Нет ошибки";
+    errorElement.textContent = "";
   };
 
   _checkInput = (inputElement) => {
@@ -72,9 +77,15 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInput(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
-      this._toggleButtonState();
+      this.toggleButtonState();
+    });
+    this._formELement.addEventListener("reset", () => {
+      this.disableButton();
+      this._inputList.forEach((inputElement) => {
+        this._hideInputError(inputElement);
+      });
     });
   };
 

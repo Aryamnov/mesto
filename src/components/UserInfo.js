@@ -1,10 +1,8 @@
-const nameProfile = document.querySelector(".profile__title"); // Находим значения строк профиля в DOM
-const signatureProfile = document.querySelector(".profile__subtitle");
-
 export class UserInfo {
-  constructor(name, signature) {
+  constructor(name, signature, avatar) {
     this._nameProfile = name;
     this._signatureProfile = signature;
+    this._avatar = avatar;
   }
 
   getUserInfo() {
@@ -12,6 +10,7 @@ export class UserInfo {
     return {
       nameProfile: this._nameProfile,
       signatureProfile: this._signatureProfile,
+      avatar: this._avatar,
     };
   }
 
@@ -19,7 +18,13 @@ export class UserInfo {
     //записывает в объект и DOM значения с формы
     this._nameProfile = newInfo.name;
     this._signatureProfile = newInfo.about;
-    nameProfile.textContent = this._nameProfile;
-    signatureProfile.textContent = this._signatureProfile;
+    document.querySelector(".profile__title").textContent = this._nameProfile;
+    document.querySelector(".profile__subtitle").textContent =
+      this._signatureProfile;
+  }
+
+  setUserAvatar(newInfo) {
+    this._avatar = newInfo.avatar;
+    document.querySelector(".profile__avatar").src = this._avatar;
   }
 }

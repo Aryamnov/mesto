@@ -8,7 +8,6 @@ export class Api {
     if (res.ok) {
       return res.json();
     }
-    console.log("Ошибка");
     return Promise.reject(`Ошибка ${res.status}`);
   }
 
@@ -42,8 +41,8 @@ export class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: newCard.name,
-        link: newCard.link,
+        name: newCard.cardname,
+        link: newCard.adress,
       }),
     }).then(this._checkResponse);
   }

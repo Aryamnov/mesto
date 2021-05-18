@@ -13,7 +13,9 @@ export class Section {
     this._container.prepend(element);
   }
 
-  renderItems() {
-    this._renderer(this._renderedItems);
+  renderItems(cardsArray) {
+    cardsArray.forEach((item) => {
+      this._renderer(item);
+    });
   }
 }

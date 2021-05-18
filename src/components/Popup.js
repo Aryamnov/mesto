@@ -23,22 +23,14 @@ export class Popup {
   setEventListeners() {
     this._elementDOM.addEventListener("click", (evt) => {
       if (
-        !evt.target.closest(".popup__container") ||
+        !(
+          evt.target.closest(".popup__container") ||
+          evt.target.closest(".popup__picture")
+        ) ||
         evt.target.classList.contains("popup__close")
       ) {
         this.close();
       }
-    });
-  }
-
-  setSubmitAction(action) {
-    this._handleSubmitCallback = action;
-  }
-
-  setEventListenersSubmit() {
-    this._elementDOM.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleSubmitCallback();
     });
   }
 }
